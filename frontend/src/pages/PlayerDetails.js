@@ -336,7 +336,8 @@ function PlayerDetails() {
           </div>
           <div className="col">
             <button
-              className="btn-sm  "
+            type="button"
+              className="btn btn-outline-primary  "
               onClick={() => navigate("/player_table/" + username)}
             >
               Back to Table
@@ -344,7 +345,7 @@ function PlayerDetails() {
           </div>
 
           <div className="col">
-            <button className="btn-sm  " onClick={() => navigate("/")}>
+            <button type="button" className="btn btn-outline-danger  " onClick={() => navigate("/")}>
               Log Out
             </button>
           </div>
@@ -401,7 +402,7 @@ function PlayerDetails() {
               <>
                 {playerData.player_position === "G" ? (
                   <>
-                    <table className="table">
+                    <table className="table table-striped">
                       <thead>
                         <tr>
                           <th scope="col">Year</th>
@@ -417,8 +418,8 @@ function PlayerDetails() {
                       </thead>
                       <tbody>
                         {goalieStats.map((player, index) => (
-                          <tr key={index}>
-                            <td>{player.year}</td>
+                          <tr key={player.id}>
+                            <td>{player.year.substring(0,2)+"-"+player.year.substring(2,4)}</td>
                             <td>{player.games_played}</td>
                             <td>{player.games_started}</td>
                             <td>{player.wins}</td>
@@ -434,10 +435,10 @@ function PlayerDetails() {
                   </>
                 ) : (
                   <>
-                    <table className="table">
+                    <table className="table table-striped">
                       <thead>
                         <tr>
-                          <th scope="col">Year</th>
+                          <th  scope="col">Year</th>
                           <th scope="col">Games</th>
                           <th scope="col">Points</th>
                           <th scope="col">Goals</th>
@@ -451,8 +452,8 @@ function PlayerDetails() {
                       </thead>
                       <tbody>
                         {skaterStats.map((player) => (
-                          <tr>
-                            <td>{player.year}</td>
+                          <tr key={player.id}>
+                            <td>{player.year.substring(0,2)+"-"+player.year.substring(2,4)}</td>
                             <td>{player.games}</td>
                             <td>{player.points}</td>
                             <td>{player.goals}</td>
@@ -475,21 +476,21 @@ function PlayerDetails() {
         <div className="row ">
           <div className="col border ">
             <div className="container">
-              <div className="row">
-                <h1 className="col-sm text-end">Tags</h1>
-                <div className="col-sm text-start">
-<button
-                  className="btn border "
+              <div className="row m-3">
+                <h1 className="col-sm text-center">Tags</h1>
+               
+<button type="button"
+                  className="col-sm btn btn-outline-primary "
                   onClick={() => setAddTags(!addTags)}
                 >
-                  {addTags ? "-" : "+"}
+                 <h2> {addTags ? "-" : "+"}</h2>
                 </button>
-                </div>
+               
                 
                 {addTags ? (
-                  <form className="form-inline" onSubmit={postTag}>
+                  <form className="form-inline m-3" onSubmit={postTag}>
                     <div className="form-group">
-                      <div className="form-group">
+                      <div className="form-group ">
                         <select
                           //multiple
                           className="form-control"
@@ -497,17 +498,19 @@ function PlayerDetails() {
                           value={tagInput}
                           onChange={(e) => setTagInput(e.target.value)}
                         >
-                          <option>Strong on Edges</option>
+                          <option>Strong on Edges </option>
                           <option>Plays Heavy Game</option>
                           <option>Stretch Pass Specialist</option>
                           <option>Power Play Specialist</option>
                           <option>Shot Blocker</option>
                         </select>
-                      </div>
 
-                      <button type="submit" className="btn btn-primary">
+                         <button type="submit" className="btn btn-primary">
                         Submit
                       </button>
+                      </div>
+
+                     
                     </div>
                   </form>
                 ) : (
@@ -531,13 +534,15 @@ function PlayerDetails() {
           {/* Notes  */}
           <div className="col border">
             <div className="container">
-              <div className="row">
+              <div className="row m-3">
                 <h1 className="col-sm">Notes</h1>
                 <button
-                  className="btn border col-sm"
+                type="button"
+
+                  className="btn btn-outline-primary col-sm"
                   onClick={() => setAddNote(!addNote)}
                 >
-                  {addNote ? "-" : "+"}
+                  <h2> {addNote ? "-" : "+"}</h2>
                 </button>
 
                 {addNote ? (
@@ -576,13 +581,14 @@ function PlayerDetails() {
           </div>
           <div className="col border">
             <div className="container">
-              <div className="row">
+              <div className="row m-3">
                 <h1 className="col-sm">Comps</h1>
                 <button
-                  className="btn border col-sm"
+                type="button"
+                  className="btn btn-outline-primary col-sm"
                   onClick={() => setAddComp(!addComp)}
                 >
-                  {addComp ? "-" : "+"}
+                  <h2> {addComp ? "-" : "+"}</h2>
                 </button>
 
                 {addComp ? (
@@ -627,7 +633,7 @@ function PlayerDetails() {
                     ) : (
                       <ul class="list-group overflow-auto ">
                         {searchResults.map((player) => (
-                          <li>
+                          <li key={player.id}>
                             <button
                             type="button"
                               onClick={(e) =>

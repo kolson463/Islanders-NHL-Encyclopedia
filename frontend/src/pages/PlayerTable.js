@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useNavigate, useParams} from "react-router-dom";
 
-import Header from "../components/Header";
+
 
 function PlayerTable() {
 
@@ -75,17 +75,6 @@ let { username } = useParams()
     getPlayers();
   }, []);
 
-  // const filterSearchName = (searchEntry) => {
-  //   const tempArray = [];
-
-  //   players.forEach((player) => {
-  //     if (player.player_full_name.includes(searchEntry)) {
-  //       tempArray.push(player);
-  //     }
-  //   });
-  //   setFilteredPlayers(tempArray);
-  //   return;
-  // };
 
   function filterFunction(position, team, shoots) {
     var parsed1 = filterPositions(position);
@@ -178,7 +167,7 @@ let { username } = useParams()
         
         
         <div className="col">
-<button className="btn-sm  " onClick={()=> navigate("/")}>Log Out</button>
+<button  type="button"className="btn btn-outline-danger " onClick={()=> navigate("/")}>Log Out</button>
         </div>
         
       </div>
@@ -190,7 +179,7 @@ let { username } = useParams()
         <h1>{isLoading ? "Loading" : ""}</h1>
         <h6>Showing {filteredPlayers.length} Players </h6>
 
-        <table className="table table-hover ">
+        <table className="table table-hover table-striped">
           <thead>
             <tr>
               <th scope="col">NHL ID</th>
@@ -198,7 +187,7 @@ let { username } = useParams()
               <th scope="col">
                 <div className="dropdown">
                   <button
-                    className="btn btn-secondary dropdown-toggle"
+                    className="btn btn-primary dropdown-toggle"
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -275,7 +264,7 @@ let { username } = useParams()
               <th scope="col">
                 <div className="dropdown">
                   <button
-                    className="btn btn-secondary dropdown-toggle"
+                    className="btn btn-primary dropdown-toggle"
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -287,8 +276,9 @@ let { username } = useParams()
                       {" "}
                       <div className="col-sm-2">
                         <li>
-                          <a
-                            href="#"
+                          <button
+                          type="button"
+                          className="btn btn-outline-secondary"
                             onClick={() =>
                               filterFunction(
                                 selectedPosition,
@@ -298,7 +288,7 @@ let { username } = useParams()
                             }
                           >
                             All
-                          </a>
+                          </button>
                         </li>
                       </div>
                       <div className="col-sm-2">
@@ -781,7 +771,7 @@ let { username } = useParams()
               <th scope="col">
                 <div className="dropdown">
                   <button
-                    className="btn btn-secondary dropdown-toggle"
+                    className="btn btn-primary dropdown-toggle"
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -822,26 +812,6 @@ let { username } = useParams()
               <th scope="col">Age</th>
               
 
-              {/* {selectedPosition === "All" ? (
-                ""
-              ) : selectedPosition === "G" ? (
-                <>
-                  <th scope="col">Goalie Stats</th>
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <th scope="col">Games</th>
-                  <th scope="col">Points</th>
-                  <th scope="col">Goals</th>
-                  <th scope="col">Assists</th>
-                  <th scope="col">PlusMinus</th>
-                  <th scope="col">Ice Time Per Game</th>
-                  <th scope="col">PIM</th>
-                  <th scope="col">Shooting%</th>
-                  <th scope="col">Hits</th>
-                </>
-              )} */}
             </tr>
           </thead>
 
@@ -852,16 +822,11 @@ let { username } = useParams()
               </tr>
             ) : (
               filteredPlayers.map((player) => (
-                <>
-                  <tr>
+                < >
+                  <tr key={player.id}>
                     
                     <td >{player.nhl_id}</td>
-                    {/* <td  onClick={()=> navigate(`/player/${player.nhl_id}`)}>
-                     <button></button>
-                
-                        
-                      
-                    </td> */}
+                  
                    <td><Link to={"/player/"+player.nhl_id} state={{username: username}}>{player.player_first_name +
                           " " +
                           player.player_last_name} </Link></td> 
