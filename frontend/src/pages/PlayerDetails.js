@@ -503,6 +503,10 @@ function PlayerDetails() {
                           <option>Stretch Pass Specialist</option>
                           <option>Power Play Specialist</option>
                           <option>Shot Blocker</option>
+                          <option>Plays Heavy Game</option>
+                          <option>Net Front Pest</option>
+                          <option>Vocal Leader</option>
+                          <option>Agitator</option>
                         </select>
 
                          <button type="submit" className="btn btn-primary">
@@ -524,7 +528,8 @@ function PlayerDetails() {
                         <h4 className="card-title">{tag.tag}</h4>
                         <div class="row ">
                           <h6 className="card-text w-50">{tag.author + " "}</h6>
-                          <button type="button" class="btn btn-outline-danger w-50" onClick={()=>deleteTag(tag.tag_id)}>Delete</button>
+                          {tag.author === username ? <button type="button" class="btn btn-outline-danger w-50" onClick={()=>deleteTag(tag.tag_id)}>Delete</button> :""}
+                          
                         </div>
                       </div>
                     ))}
@@ -572,8 +577,7 @@ function PlayerDetails() {
                         <h5 className="card-title">{note.note}</h5>
                         <div class="row ">
                           <h6 className="card-text w-50">{note.author + " "}</h6>
-                          <button type="button" class="btn btn-outline-danger w-50" onClick={()=>deleteNote(note.note_id)}>Delete</button>
-                        </div>
+                          {note.author === username ? <button type="button" class="btn btn-outline-danger w-50" onClick={()=>deleteNote(note.note_id)}>Delete</button> :""}                        </div>
                       </div>
                     ))}
               </div>
@@ -675,8 +679,7 @@ function PlayerDetails() {
 
                         <div class="row ">
                           <h6 className="card-text w-50">{comp.author + " "}</h6>
-                          <button type="button" class="btn btn-outline-danger w-50" onClick={()=>deleteComp(comp.comp_db_id)}>Delete</button>
-                        </div>
+                          {comp.author === username ? <button type="button" class="btn btn-outline-danger w-50" onClick={()=>deleteTag(comp.comp_db_id)}>Delete</button> :""}                        </div>
                       </div>
                     ))}
               </div>
