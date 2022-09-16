@@ -1,1 +1,1 @@
-# Islanders-NHL-Encyclopedia
+# NHL-Encyclopedia
